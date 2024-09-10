@@ -72,13 +72,14 @@ const Login = () => {
             <label htmlFor="remember" className="text-gray-700">จดจำรหัสผ่าน</label>
             <a href="#forgot" className="text-blue-400 ml-auto text-sm hover:underline">ลืมรหัสผ่าน?</a>
           </div>
-          <button 
-  type="submit" 
-  className="w-full text-white py-2 rounded-md hover:bg-blue-600" 
-  style={{ backgroundColor: '#568AFF' }}
->
-  เข้าสู่ระบบ
-</button>        </form>
+          <button
+            type="submit"
+            className="w-full text-white py-2 rounded-md hover:bg-blue-600"
+            style={{ backgroundColor: '#568AFF' }}
+          >
+            เข้าสู่ระบบ
+          </button>
+        </form>
       </div>
     </div>
   );
