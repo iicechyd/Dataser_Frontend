@@ -24,7 +24,9 @@ function StudentList() {
   }, []);
 
   return (
+    
     <div>
+        <Navnar/>
      <h1>Student List</h1>
       {error && <p>{error}</p>}
       <ul>
