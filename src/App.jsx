@@ -1,23 +1,23 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import routing components
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; 
 import './App.css';
-import Login from './pages/Login';  // Import Login from pages
+import Login from './pages/Login';  
+import StudentList from './pages/Student';
+import TeacherList from './pages/Teacher';
+
 import DefaultLayout from './layout/default';
-import Student from './pages/Student';
-import Teacher from './pages/Teacher';
 
 function App() {
+  const token = localStorage.getItem('token'); 
+  const isLoggedIn = !!token; 
+
   return (
     <Router>
-      <DefaultLayout>
       <Routes>
-        {/* กำหนดเส้นทางให้ไปยังหน้า Login */}
         <Route path="/" element={<Login />} />
-        <Route path="/" element={<Login />} />
-        <Route path="/students" element={isLoggedIn ? <Student/> : <Navigate to="/login" />} />
-        <Route path="/teachers" element={isLoggedIn ? <Teacher /> : <Navigate to="/login" />} />
+        <Route path="/students" element={isLoggedIn ? <StudentList /> : <Navigate to="/" />} />
+        <Route path="/teachers" element={isLoggedIn ? <TeacherList /> : <Navigate to="/" />} />
       </Routes>
-      </DefaultLayout>
     </Router>
   );
 }
