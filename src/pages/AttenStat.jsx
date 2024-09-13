@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-
-function StdList() {
+//ยังไม่เสร็จจั้บพี่
+function AttenStat() {
   const [students, setStudents] = useState([]);
   const [error, setError] = useState(null);
 
@@ -10,7 +10,7 @@ function StdList() {
     const fetchStudents = async () => {
       try {
         const response = await axios.get("http://localhost:3000/atten/");
-        setStudents(response.data.Attendance); // Adjusted to match the structure of the response
+        setStudents(response.data.Attendance); 
       } catch (err) {
         setError("Failed to fetch students");
       }
@@ -19,6 +19,52 @@ function StdList() {
     fetchStudents();
   }, []);
 
+  const toggleStatus = (index) => {
+    setStudents((prevStudents) => {
+      const newStudents = [...prevStudents];
+      const currentStatus = newStudents[index].status;
+
+      
+      if (currentStatus === "present") {
+        newStudents[index].status = "late";
+      } else if (currentStatus === "late") {
+        newStudents[index].status = "absent";
+      } else if (currentStatus === "absent") {
+        newStudents[index].status = "leave";
+      } else {
+        newStudents[index].status = "present";
+      }
+
+      return newStudents;
+    });
+  };
+
+  const renderStatusCircle = (status, index) => {
+    let bgColor;
+    switch (status) {
+      case "present":
+        bgColor = "bg-green-500";
+        break;
+      case "late":
+        bgColor = "bg-orange-500";
+        break;
+      case "absent":
+        bgColor = "bg-red-500";
+        break;
+      case "leave":
+        bgColor = "bg-blue-500";
+        break;
+      default:
+        bgColor = "bg-gray-300";
+    }
+
+    return (
+      <button
+        className={`inline-block w-4 h-4 ${bgColor} rounded-full`}
+        onClick={() => toggleStatus(index)}
+      />
+    );
+  };
   return (
     <div>
       <Navbar />
@@ -29,25 +75,7 @@ function StdList() {
             สถานะการเข้าเรียนล่าสุด
           </h1>
 
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <a
-              href="./AttenStat"
-              style={{ color: "gray", textDecoration: "underline" }}
-            >
-              สถิติการเข้าเรียน
-            </a>
-          </div>
-
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg p-4">
-            <div className="flex justify-end">
-              <button
-                type="button"
-                className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-xs px-3 py-1.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-              >
-                รายชื่อนักศึกษา
-              </button>
-            </div>
-
             <h2 className="text-xl font-semibold pb-8">
               ชื่อวิชา ดึงงงงงงงงงงงงงงงงงงงงงงชื่อ
             </h2>
@@ -66,16 +94,16 @@ function StdList() {
                       ชื่อ-นามสกุล
                     </th>
                     <th scope="col" className="px-6 py-3">
-                      เวลา
+                      1/09/24
                     </th>
                     <th scope="col" className="px-6 py-3">
-                      วันที่
+                      8/09/24
                     </th>
                     <th scope="col" className="px-6 py-3">
-                      Status
+                      19/09/24
                     </th>
                     <th scope="col" className="px-6 py-3">
-                      email
+                      30/09/24
                     </th>
                   </tr>
                 </thead>
@@ -87,6 +115,9 @@ function StdList() {
                         key={index}
                         className="bg-white text-center border-b dark:bg-gray-800 dark:border-gray-700"
                       >
+                        <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          {index + 1}
+                        </td>
                         <th
                           scope="row"
                           className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -96,15 +127,18 @@ function StdList() {
                         <td className="px-6 py-4">
                           {student.student_fname} {student.studnet_lname}
                         </td>
-                        <td className="px-6 py-4">{time}</td>
-                        <td className="px-6 py-4">{date}</td>
-                        <td className="px-6 py-4">
-                          <span className="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                            {student.status}
-                          </span>
+                        <td className="px-6 py-4 ">
+                          {renderStatusCircle(student.status)}
                         </td>
-
-                        <td className="px-6 py-4">{student.email}</td>
+                        <td className="px-6 py-4 ">
+                          {renderStatusCircle(student.status)}
+                        </td>
+                        <td className="px-6 py-4 ">
+                          {renderStatusCircle(student.status)}
+                        </td>
+                        <td className="px-6 py-4 ">
+                          {renderStatusCircle(student.status)}
+                        </td>
                       </tr>
                     );
                   })}
@@ -119,4 +153,4 @@ function StdList() {
   );
 }
 
-export default StdList;
+export default AttenStat;

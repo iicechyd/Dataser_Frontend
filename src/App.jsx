@@ -3,14 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './pages/Login';  
 import StudentList from './pages/Student';
 import TeacherList from './pages/Teacher';
-import StdList from './pages/StdList'
-
-<<<<<<< HEAD
-import DefaultLayout from './layout/default';
-
-
-=======
->>>>>>> 3156aaba53a6cb9eb04a2bad044088da5ac58677
+import StdList from './pages/StdList';
+import AttenStat from './pages/AttenStat';
 function App() {
   const token = localStorage.getItem('token'); 
   const isLoggedIn = !!token; 
@@ -22,6 +16,7 @@ function App() {
         <Route path="/students" element={isLoggedIn ? <StudentList /> : <Navigate to="/" />} />
         <Route path="/teachers" element={isLoggedIn ? <TeacherList /> : <Navigate to="/" />} />
         <Route path="/StdList" element={isLoggedIn ? <StdList/> : <Navigate to="/" />} />
+        <Route path="/AttenStat" element={isLoggedIn ? <AttenStat/> : <Navigate to="/" />} />
       </Routes>
     </Router>
   );

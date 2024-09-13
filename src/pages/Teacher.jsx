@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-<<<<<<< HEAD
-import Navbar from '../components/Navbar'
-=======
->>>>>>> 3156aaba53a6cb9eb04a2bad044088da5ac58677
 
 function TeacherList(){
     const [teachers, setTeachers] = useState([]);
