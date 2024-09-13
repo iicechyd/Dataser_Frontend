@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import TNavbar from '../components/TNavbar'
+import Navbar from '../components/Navbar'
 
 function TeacherList(){
     const [teachers, setTeachers] = useState([]);
@@ -21,7 +21,7 @@ function TeacherList(){
 
     return (
         <div>
-          <TNavbar/>
+          <Navbar/>
           <h1>Teacher List</h1>
           {error && <p>{error}</p>}
           <ul>
