@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom'; // อย่าลืม import useLocation
+import { useLocation } from 'react-router-dom'; 
 import Navbar from '../components/Navbar'; 
 
 const DefaultLayout = ({ children }) => {

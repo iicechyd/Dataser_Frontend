@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import '../css/Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -37,6 +36,7 @@ const Login = () => {
   };
 
   return (
+    <div class="bg-[#4880FF]">
     <div className="flex flex-col items-center justify-center min-h-screen ">
       <div className="text-center mb-6">
         <h1 className="text-4xl font-bold text-white">
@@ -45,7 +45,7 @@ const Login = () => {
         </h1>
       </div>
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">เข้าสู่ระบบ</h2>
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">เข้าสู่ระบบ</h2>
         <p className="text-gray-600 mb-6">กรุณากรอกอีเมลและรหัสผ่านเพื่อดำเนินการต่อ</p>
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
         <form onSubmit={handleSubmit}>
@@ -72,15 +72,10 @@ const Login = () => {
             <label htmlFor="remember" className="text-gray-700">จดจำรหัสผ่าน</label>
             <a href="#forgot" className="text-blue-400 ml-auto text-sm hover:underline">ลืมรหัสผ่าน?</a>
           </div>
-          <button
-            type="submit"
-            className="w-full text-white py-2 rounded-md hover:bg-blue-600"
-            style={{ backgroundColor: '#568AFF' }}
-          >
-            เข้าสู่ระบบ
-          </button>
-        </form>
+          <button type="submit" className="w-full bg-[#4880FF] text-white py-2 rounded-md "> เข้าสู่ระบบ </button>
+          </form>
       </div>
+    </div>
     </div>
   );
 };
