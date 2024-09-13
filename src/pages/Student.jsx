@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Navbar from '../components/Navbar'
 
 
 
-
-function StudentList() {
+function Student() {
   const [students, setStudents] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/student`);
+        const response = await axios.get(`http://localhost:3000/student`);
         setStudents(response.data);
       } catch (err) {
         setError('Failed to fetch students');
@@ -24,7 +24,9 @@ function StudentList() {
   }, []);
 
   return (
+    
     <div>
+        <Navbar/>
      <h1>Student List</h1>
       {error && <p>{error}</p>}
       <ul>
@@ -38,4 +40,4 @@ function StudentList() {
   );
 }
 
-export default StudentList;
+export default Student;
