@@ -35,7 +35,6 @@ function Student() {
       <Navbar />
       <div className="flex justify-center py-8">
         <div className="w-full max-w-4xl">
-        
           <h1 className="text-2xl font-bold text-left mb-6">รายวิชาที่ลงทะเบียน</h1>
 
           <div className="relative overflow-x-auto sm:rounded-lg">
@@ -46,7 +45,7 @@ function Student() {
                   <th scope="col" className="px-6 py-3">รหัสวิชา</th>
                   <th scope="col" className="px-6 py-3">ชื่อวิชา</th>
                   <th scope="col" className="px-6 py-3">อาจารย์ผู้สอน</th>
-                
+                  <th scope="col" className="px-6 py-3 text-center">เช็คชื่อ</th>
                 </tr>
               </thead>
               <tbody>
@@ -63,7 +62,7 @@ function Student() {
                     <td className="px-6 py-4">{course.instructor_name}</td>
                     <td className="px-6 py-4 text-center">
                       <Link
-                        to={`/checkin/${course.course_code}`}
+                        to={`/checkin/${course.course_code}`} // ส่ง course_code ผ่าน URL
                         className="text-blue-600 hover:text-blue-800"
                       >
                         เช็คชื่อ
@@ -82,7 +81,3 @@ function Student() {
 }
 
 export default Student;
-
-
-
-

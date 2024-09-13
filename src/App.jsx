@@ -5,6 +5,7 @@ import StudentList from './pages/Student';
 import TeacherList from './pages/Teacher';
 import StdList from './pages/StdList';
 import AttenStat from './pages/AttenStat';
+import CheckIn from './pages/checkin'
 function App() {
   const token = localStorage.getItem('token'); 
   const isLoggedIn = !!token; 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/teachers" element={isLoggedIn ? <TeacherList /> : <Navigate to="/" />} />
         <Route path="/StdList" element={isLoggedIn ? <StdList/> : <Navigate to="/" />} />
         <Route path="/AttenStat" element={isLoggedIn ? <AttenStat/> : <Navigate to="/" />} />
+        <Route path="/checkin/:course_code" element={<CheckIn />} />
       </Routes>
     </Router>
   );

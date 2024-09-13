@@ -10,7 +10,7 @@ function StdList() {
     const fetchStudents = async () => {
       try {
         const response = await axios.get("http://localhost:3000/atten/");
-        setStudents(response.data.Attendance); // Adjusted to match the structure of the response
+        setStudents(response.data.Attendance); 
       } catch (err) {
         setError("Failed to fetch students");
       }
