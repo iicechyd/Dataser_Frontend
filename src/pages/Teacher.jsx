@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import TNavbar from '../components/TNavbar'
 
 function TeacherList(){
     const [teachers, setTeachers] = useState([]);

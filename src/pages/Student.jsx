@@ -22,12 +22,12 @@ function Student() {
   return (
     <div>
       <Navbar />
-      <div className="flex justify-center py-8"> {/* จัดวางตารางให้อยู่ตรงกลาง */}
-        <div className="bg-white rounded-lg p-6 w-full max-w-4xl"> {/* card สีขาวที่ครอบตาราง */}
-          <div>
-            <h2 className="text-black font-bold text-lg	text-left p-5">รายชื่อนักศึกษา</h2>
-            </div>
-          <div className="relative overflow-x-auto  sm:rounded-lg">
+      <div className="flex justify-center py-8">
+        <div className="w-full max-w-4xl">
+          {/* หัวข้อ */}
+          <h1 className="text-2xl font-bold text-left mb-6">รายชื่อนักศึกษา</h1>
+
+          <div className="relative overflow-x-auto sm:rounded-lg">
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -66,7 +66,6 @@ function Student() {
         </div>
       </div>
     </div>
-
   );
 }
 
