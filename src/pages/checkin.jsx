@@ -38,7 +38,7 @@ function CheckIn() {
      
       window.alert('เช็คชื่อเสร็จสิ้น');
     } catch (err) {
-      // แสดงข้อผิดพลาด
+      
       setStatus(err.response?.data?.message || 'เกิดข้อผิดพลาดในการเช็คชื่อ');
     }
   };
