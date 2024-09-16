@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/NavbarTeacher';
 import axios from 'axios';
 
-function TeacherList() {
+function CourseList() {
   const [courses, setCourses] = useState([]);
   const [error, setError] = useState(null);
 
@@ -30,7 +30,7 @@ function TeacherList() {
       <Navbar />
       <div className="flex justify-center py-8">
         <div className="w-full max-w-4xl">
-          <h1 className="text-2xl font-bold text-left mb-6">รายวิชาที่สอน</h1>
+          <h1 className="text-2xl font-bold text-left mb-6">รายวิชาทั้งหมด</h1>
 
           <div className="relative overflow-x-auto sm:rounded-lg">
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -61,15 +61,15 @@ function TeacherList() {
                         </div>
                       ))}
                     </td>
+                   
                     <td className="px-6 py-4 text-center">
                       <Link
-                        to={`/opencheckin/${course.course_code}`} 
-                        className="text-blue-600 hover:text-blue-800"
+                        to={`/checkinstatus/${course.course_code}`}  
+                        className="text-green-600 hover:text-green-800"
                       >
-                        เปิดระบบเช็คชื่อ
+                        ตรวจสอบการเช็คชื่อ
                       </Link>
                     </td>
-                  
                   </tr>
                 ))}
               </tbody>
@@ -82,4 +82,4 @@ function TeacherList() {
   );
 }
 
-export default TeacherList;
+export default CourseList;
