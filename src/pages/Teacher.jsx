@@ -14,8 +14,7 @@ function TeacherList() {
         const response = await axios.get('http://localhost:3000/courses/by', {
           headers: { Authorization: `Bearer ${token}` },
         });
-        console.log(response.data); 
-        setCourses(response.data.course); 
+        setCourses(response.data.course);
       } catch (err) {
         console.error(err);
         setError('Failed to fetch courses');
@@ -24,6 +23,27 @@ function TeacherList() {
 
     fetchCourses();
   }, []);
+
+  const openAttendance = async (courseCode) => {
+    const confirmOpen = window.confirm(`คุณต้องการเปิดระบบเช็คชื่อสำหรับคอร์ส ${courseCode} หรือไม่?`);
+    
+    if (confirmOpen) {  
+      const token = localStorage.getItem('token');
+      try {
+        const response = await axios.post(
+          'http://localhost:3000/atten/open',
+          { course_code: courseCode },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        alert(`เปิดระบบเช็คชื่อสำหรับ ${courseCode} แล้ว`);
+      } catch (err) {
+        console.error(err);
+        alert('ไม่สามารถเปิดระบบเช็คชื่อได้');
+      }
+    }
+  };
 
   return (
     <div>
@@ -40,7 +60,7 @@ function TeacherList() {
                   <th scope="col" className="px-6 py-3">รหัสวิชา</th>
                   <th scope="col" className="px-6 py-3">ชื่อวิชา</th>
                   <th scope="col" className="px-6 py-3">วันและเวลาเรียน</th>
-               
+                  <th scope="col" className="px-6 py-3">การกระทำ</th>
                 </tr>
               </thead>
               <tbody>
@@ -62,14 +82,13 @@ function TeacherList() {
                       ))}
                     </td>
                     <td className="px-6 py-4 text-center">
-                      <Link
-                        to={`/opencheckin/${course.course_code}`} 
+                      <button
+                        onClick={() => openAttendance(course.course_code)}
                         className="text-blue-600 hover:text-blue-800"
                       >
                         เปิดระบบเช็คชื่อ
-                      </Link>
+                      </button>
                     </td>
-                  
                   </tr>
                 ))}
               </tbody>

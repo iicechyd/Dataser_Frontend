@@ -7,6 +7,7 @@ import StdList from './pages/StdList';
 import AttenStat from './pages/AttenStat';
 import CheckIn from './pages/checkin'
 import CourseList from './pages/CourseList'
+import TeacherAddCourse  from './pages/TeacherAddCourse';
 
 function App() {
   const token = localStorage.getItem('token'); 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/checkin/:course_code" element={<CheckIn />} />
         <Route path="/CourseList/" element={<CourseList />} />
         <Route path="/checkinstatus/:course_code" element={<StdList/>} />
+        <Route path="/TeacherAddCourse/" element={<TeacherAddCourse/>} />
       </Routes>
     </Router>
   );
