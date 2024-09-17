@@ -4,8 +4,11 @@ import './App.css';
 import Login from './pages/Login';  
 import StudentList from './pages/Student';
 import TeacherList from './pages/Teacher';
+<<<<<<< HEAD
 
 import DefaultLayout from './layout/default';
+=======
+>>>>>>> parent of 6481cbd (Merge branch 'main' of https://github.com/iicechyd/Dataser_Frontend)
 
 function App() {
   const token = localStorage.getItem('token'); 
