@@ -4,7 +4,20 @@ import { useNavigate } from "react-router-dom";
 function Navbar() {
   const navigate = useNavigate(); 
 
-  
+  const handleaddcourse = () => {
+    navigate('/TeacherAddCourse/')
+  }
+
+  const handleCourseList = () =>  {
+    navigate('/teachers')
+  }
+
+  const handlecheckname =() =>{
+
+    navigate('/CourseList')
+  }
+
+
   const handleLogout = () => {
     localStorage.removeItem('token'); 
     navigate('/'); 
@@ -54,23 +67,37 @@ function Navbar() {
             <li>
               <a
                 href="#"
+                onClick={handleCourseList}
                 class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 "
               >
                 <svg className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75  group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M4.35736 0.359375L5.38861 1.39062L2.63861 4.14062L2.12298 4.57031L1.60736 4.14062L0.232359 2.76562L1.26361 1.73438L2.12298 2.63672L4.35736 0.359375ZM7.62298 1.5625H16.5605V2.9375H7.62298V1.5625ZM4.35736 5.85938L5.38861 6.89062L2.63861 9.64062L2.12298 10.0703L1.60736 9.64062L0.232359 8.26562L1.26361 7.23438L2.12298 8.13672L4.35736 5.85938ZM7.62298 7.0625H16.5605V8.4375H7.62298V7.0625ZM4.35736 11.3594L5.38861 12.3906L2.63861 15.1406L2.12298 15.5703L1.60736 15.1406L0.232359 13.7656L1.26361 12.7344L2.12298 13.6367L4.35736 11.3594ZM7.62298 12.5625H16.5605V13.9375H7.62298V12.5625Z" fill="#202224"/>
                </svg>
-                <span class="ms-3 ">เช็คชื่อเข้าเรียน</span>
+                <span class="ms-3 ">รายวิชาที่สอน</span>
               </a>
             </li>
             <li>
               <a
                 href="#"
+                onClick={handlecheckname}
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M0.4375 0.1875H1.125H14.875H15.5625V0.875V14.625V15.3125H14.875H1.125H0.4375V14.625V0.875V0.1875ZM1.8125 1.5625V7.0625H7.3125V1.5625H1.8125ZM8.6875 1.5625V7.0625H14.1875V1.5625H8.6875ZM1.8125 8.4375V13.9375H7.3125V8.4375H1.8125ZM8.6875 8.4375V13.9375H14.1875V8.4375H8.6875Z" fill="#202224"/>
                </svg>
                 <span class="ms-3">ตรวจสอบการเช็คชื่อ</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                onClick={handleaddcourse}
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <svg className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M0.4375 0.1875H1.125H14.875H15.5625V0.875V14.625V15.3125H14.875H1.125H0.4375V14.625V0.875V0.1875ZM1.8125 1.5625V7.0625H7.3125V1.5625H1.8125ZM8.6875 1.5625V7.0625H14.1875V1.5625H8.6875ZM1.8125 8.4375V13.9375H7.3125V8.4375H1.8125ZM8.6875 8.4375V13.9375H14.1875V8.4375H8.6875Z" fill="#202224"/>
+               </svg>
+                <span class="ms-3">เพิ่มรายวิชา</span>
               </a>
             </li>
             
