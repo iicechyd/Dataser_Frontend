@@ -1,41 +1,58 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-//ยังไม่เสร็จจั้บพี่
+import { useParams } from "react-router-dom";
+
 function AttenStat() {
-  const [students, setStudents] = useState([]);
+  const { course_code } = useParams();
+  const [attendance, setAttendance] = useState([]);
+  const [courseName, setCourseName] = useState("");
   const [error, setError] = useState(null);
+  const [status, setStatus] = useState("");
 
   useEffect(() => {
-    const fetchStudents = async () => {
+    const fetchAttendance = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/atten/");
-        setStudents(response.data.Attendance); 
+        const response = await axios.get(`http://localhost:3000/atten/byc`, {
+          params: { course_code, status },
+        });
+
+        if (response.data.Attendance.length > 0) {
+          setAttendance(response.data.Attendance);
+          setCourseName(response.data.Attendance[1].course_name);
+        } else {
+          setAttendance([]);
+          setCourseName("");
+        }
       } catch (err) {
-        setError("Failed to fetch students");
+        console.error(err);
+        setError("Failed to fetch attendance");
       }
     };
 
-    fetchStudents();
-  }, []);
+    fetchAttendance();
+  }, [course_code, status]);
+
+  const handleStatusChange = (e) => {
+    setStatus(e.target.value);
+  };
 
   const toggleStatus = (index) => {
-    setStudents((prevStudents) => {
-      const newStudents = [...prevStudents];
-      const currentStatus = newStudents[index].status;
+    setAttendance((prevAttendance) => {
+      const newAttendance = [...prevAttendance];
+      const currentStatus = newAttendance[index].status;
 
-      
       if (currentStatus === "present") {
-        newStudents[index].status = "late";
+        newAttendance[index].status = "late";
       } else if (currentStatus === "late") {
-        newStudents[index].status = "absent";
+        newAttendance[index].status = "absent";
       } else if (currentStatus === "absent") {
-        newStudents[index].status = "leave";
+        newAttendance[index].status = "leave";
       } else {
-        newStudents[index].status = "present";
+        newAttendance[index].status = "present";
       }
 
-      return newStudents;
+      return newAttendance;
     });
   };
 
@@ -72,12 +89,12 @@ function AttenStat() {
       <div className="flex justify-center py-8">
         <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-2xl font-bold text-center mb-6">
-            สถานะการเข้าเรียนล่าสุด
+            สถิติการเข้าเรียน
           </h1>
 
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg p-4">
             <h2 className="text-xl font-semibold pb-8">
-              ชื่อวิชา ดึงงงงงงงงงงงงงงงงงงงงงงชื่อ
+              รายวิชา: {course_code} {courseName}
             </h2>
 
             <div className="relative overflow-x-auto  sm:rounded-lg">
@@ -108,8 +125,11 @@ function AttenStat() {
                   </tr>
                 </thead>
                 <tbody>
-                  {students.map((student, index) => {
-                    const [date, time] = student.date.split(" ");
+                  {attendance.map((student, index) => {
+                    const date = new Date(student.date);
+                    const time = date.toLocaleTimeString();
+                    const formattedDate = date.toLocaleDateString();
+
                     return (
                       <tr
                         key={index}
