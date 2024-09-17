@@ -18,12 +18,11 @@ function StdList() {
         });
 
         if (response.data.Attendance.length > 0) {
-         
           setAttendance(response.data.Attendance);
-          setCourseName(response.data.Attendance[1].course_name); 
+          setCourseName(response.data.Attendance[1].course_name);
         } else {
           setAttendance([]);
-          setCourseName(""); 
+          setCourseName("");
         }
       } catch (err) {
         console.error(err);
@@ -80,7 +79,7 @@ function StdList() {
             </div>
 
             <h2 className="text-xl font-semibold pb-8">
-              รายวิชา: {course_code}  {courseName} 
+              รายวิชา: {course_code} {courseName}
             </h2>
 
             <div className="relative overflow-x-auto sm:rounded-lg">
